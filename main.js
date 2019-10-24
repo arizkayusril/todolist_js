@@ -53,10 +53,12 @@ for (i = 0; i < close.length; i++) {
 // Add a "checked" symbol when clicking on a list item
 var list = document.querySelector('ul');
 var number = document.getElementById("number");
+
 count = 0
+
 list.addEventListener('click', function(ev) {
   if (ev.target.tagName === 'LI') {
-    ev.target.classList.toggle('checked');
+   if (ev.target.classList.toggle('checked')){
     ev.target.tagName == 'number'
     count ++;
     number.innerHTML = " " + count;
@@ -64,4 +66,6 @@ list.addEventListener('click', function(ev) {
     count --;
     number.innerHTML = " " + count;
   }
+
+}
 }, false);
