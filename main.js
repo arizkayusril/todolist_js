@@ -40,21 +40,11 @@ for (i = 0; i < myNodelist.length; i++) {
   myNodelist[i].appendChild(span);
 }
 
-// Click on a close button to hide the current list item
-var close = document.getElementsByClassName("close");
-var i;
-for (i = 0; i < close.length; i++) {
-  close[i].onclick = function() {
-    var div = this.parentElement;
-    div.style.display = "none";
-    count --;
-    number.innerHTML = " " + count;
-  }
-}
-
 // Add a "checked" symbol when clicking on a list item
 var list = document.querySelector('ul');
 var number = document.getElementById("number");
+var close = document.getElementsByClassName("close");
+var i;
 
 count = 0
 
@@ -67,7 +57,35 @@ list.addEventListener('click', function(ev) {
   } else {
     count --;
     number.innerHTML = " " + count;
+    
   }
 
+  for (i = 0; i < close.length; i++) {
+    close[i].onclick = function() {
+      localStorage.removeItem ("list");
+      count --;
+      number.innerHTML = " " + count;
+      var div = this.parentElement;
+      div.style.display = "none";
+    }
+  
+  }
 }
 }, false);
+
+
+
+// Click on a close button to hide the current list item
+// var close = document.getElementsByClassName("close");
+// var i;
+
+// for (i = 0; i < close.length; i++) {
+//   close[i].onclick = function() {
+//     localStorage.removeItem ("list");
+//     count --;
+//     number.innerHTML = " " + count;
+//     var div = this.parentElement;
+//     div.style.display = "none";
+//   }
+
+// }
