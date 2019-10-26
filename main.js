@@ -5,9 +5,11 @@ function newElement() {
   var inputValue = document.getElementById("myInput").value;
   var t = document.createTextNode(inputValue);
   li.appendChild(t);
+
   if (inputValue === '') {
     alert("You must write something!");
   } else {
+
   ul.appendChild(li);
   localStorage["list"] = ul.innerHTML
   var span = document.createElement("SPAN");
@@ -15,6 +17,7 @@ function newElement() {
   span.className = "close";
   span.appendChild(txt);
   li.appendChild(span);
+
   }
   document.getElementById("myInput").value = "";
 
@@ -54,13 +57,15 @@ list.addEventListener('click', function(ev) {
     ev.target.tagName == 'number'
     count ++;
     number.innerHTML = " " + count;
+    
   } else {
     count --;
     number.innerHTML = " " + count;
     
   }
 
-  for (i = 0; i < close.length; i++) {
+// Click on a close button to hide the current list item
+for (i = 0; i < close.length; i++) {
     close[i].onclick = function() {
       localStorage.removeItem ("list");
       count --;
@@ -75,17 +80,3 @@ list.addEventListener('click', function(ev) {
 
 
 
-// Click on a close button to hide the current list item
-// var close = document.getElementsByClassName("close");
-// var i;
-
-// for (i = 0; i < close.length; i++) {
-//   close[i].onclick = function() {
-//     localStorage.removeItem ("list");
-//     count --;
-//     number.innerHTML = " " + count;
-//     var div = this.parentElement;
-//     div.style.display = "none";
-//   }
-
-// }
