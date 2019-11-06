@@ -30,7 +30,7 @@ let renderItems = () => {
             <input type="checkbox" class="form-check-input" onchange="onChecked(this);">
             <label class="form-check-label">${item.name}</label>
             </div>
-            <span onclick="btnDel(this);">X</span>
+            <span id="btnDelete" value="1" onclick="btnDel(this);">X</span>
             </li>`
         }
         DOMStrings.listItems.innerHTML += ac;
@@ -43,19 +43,29 @@ let count = () => {
         if (items.data[index].check) {
             number++;
         } 
-    }
+    }        
     items.completed = number;
     DOMStrings.countTodoCompleted.innerHTML = number;
 }
 
 
 // Create a "close" button and append it to each list item
-let btnDel = (e) => {
+var btnDel = (e) => {
     const index = e.parentElement.getAttribute("index");
+
+    // remove ui
     e.parentElement.remove();
+
+    // remove data
     items.data.splice(index, 1);
+
+    // set ulang localstorage
     localStorage.setItem('items', JSON.stringify(items));
+    
+    count();
+    
 }
+
 
 
 // Add a "checked" symbol when clicking on a list item
@@ -81,20 +91,20 @@ if (localStorage.getItem('items')) {
         completed: 0,
         data: [
             {
-            name: 'Dolanan Coding',
-            check: false
+                name: 'Dolanan Coding',
+                check: false
             },
             {
-            name: "Tilawah Al-Qur'an",
-            check: false
+                name: "Tilawah Al-Qur'an",
+                check: false
             },
             {
-            name: 'Kajian Aqidah',
-            check: false
+                name: 'Kajian Aqidah',
+                check: false
             },
             {
-            name: 'Kajian Fikih',
-            check: false
+                name: 'Kajian Fikih',
+                check: false
             }
         ]
     };
@@ -116,3 +126,6 @@ DOMStrings.btnAdd.addEventListener('click', () => {
         alert("You must write something!");
     }
 });
+
+
+
